@@ -42,8 +42,14 @@ export default function ContactSection() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log('Form submitted:', data);
-    // Aquí iría la lógica para enviar el email
+    // Crear mensaje para WhatsApp
+    const message = `Hola! Mi nombre es ${data.name}.%0A%0AEmail: ${data.email}%0A%0AMensaje: ${data.message}`;
+    const whatsappUrl = `https://wa.me/51901426737?text=${message}`;
+    
+    // Abrir WhatsApp en nueva ventana
+    window.open(whatsappUrl, '_blank');
+    
+    // Limpiar formulario
     reset();
   };
 

@@ -17,7 +17,12 @@ const navigation = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +71,7 @@ export default function Navbar() {
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 rounded-lg bg-secondary hover:bg-accent transition-colors"
             >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              {mounted ? (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />) : <div className="w-[18px] h-[18px]" />}
             </button>
           </div>
 
@@ -76,7 +81,7 @@ export default function Navbar() {
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 rounded-lg bg-secondary hover:bg-accent transition-colors"
             >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              {mounted ? (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />) : <div className="w-[18px] h-[18px]" />}
             </button>
             
             <button
